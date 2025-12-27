@@ -9,6 +9,16 @@
     "preview": "vite preview",
     "start": "node index.js"
   },
+
+
+   "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ESNext"],
+    "types": ["vite/client"],
+    "skipLibCheck": true
+   },
+
+
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
