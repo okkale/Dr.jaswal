@@ -13,11 +13,6 @@ interface BlogArticleViewProps {
   };
 }
 
-/**
- * IMPORTANT:
- * react-markdown types are intentionally loose.
- * This is the ONLY TS-safe way to define components in TS 5.
- */
 const markdownComponents: Components = {
   p({ children }) {
     return <p className="mb-4 leading-relaxed">{children}</p>;
@@ -32,18 +27,10 @@ const markdownComponents: Components = {
     return <li className="mb-1">{children}</li>;
   },
   h2({ children }) {
-    return (
-      <h2 className="text-2xl font-semibold mt-8 mb-4">
-        {children}
-      </h2>
-    );
+    return <h2 className="text-2xl font-semibold mt-8 mb-4">{children}</h2>;
   },
   h3({ children }) {
-    return (
-      <h3 className="text-xl font-semibold mt-6 mb-3">
-        {children}
-      </h3>
-    );
+    return <h3 className="text-xl font-semibold mt-6 mb-3">{children}</h3>;
   },
   blockquote({ children }) {
     return (
@@ -66,16 +53,16 @@ const markdownComponents: Components = {
   },
 };
 
-const BlogArticleView: React.FC<BlogArticleViewProps> = ({ article }) => {
+export default function BlogArticleView({ article }: BlogArticleViewProps) {
   return (
     <article className="max-w-3xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
 
       {(article.author || article.date) && (
         <div className="text-sm text-gray-500 mb-6">
-          {article.author && <span>{article.author}</span>}
-          {article.author && article.date && <span> · </span>}
-          {article.date && <span>{article.date}</span>}
+          {article.author}
+          {article.author && article.date && " · "}
+          {article.date}
         </div>
       )}
 
@@ -95,6 +82,4 @@ const BlogArticleView: React.FC<BlogArticleViewProps> = ({ article }) => {
       </ReactMarkdown>
     </article>
   );
-};
-
-export default BlogArticleView;
+}
